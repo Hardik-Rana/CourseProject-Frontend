@@ -1,0 +1,28 @@
+<div class="container">
+
+
+     <div class="row mt-3">
+        <div class="col-md-4" *ngFor="let card of courses">
+            <div class="card mb-4" style="width: 18rem;">
+                <img class="card-img-top" src={{thumbnail[2]}} alt="Card image cap">
+                <div class="card-body">
+                  <h4 class="card-title">{{card.course.title}}</h4>
+                  <p class="card-text text-secondary">{{"Author: "+card.authorName}}</p>
+                  <p class="card-text">{{card.course.description}}</p>
+                  
+                  <div> 
+                    <span class="fa fa-star ml-1 mb-2" [ngClass]="card.course.rating >= 1? 'checked': ''"></span>
+                    <span class="fa fa-star mx-1" [ngClass]="card.course.rating >= 2? 'checked': ''"></span>
+                    <span class="fa fa-star" [ngClass]="card.course.rating >= 3? 'checked': ''"></span>
+                    <span class="fa fa-star mx-1" [ngClass]="card.course.rating >= 4? 'checked': ''"></span>
+                    <span class="fa fa-star" [ngClass]="card.course.rating >= 5? 'checked': ''"></span>
+                    
+                  </div>
+
+                  <button class="btn btn-block btn-info ">Watch  <i class="fa fa-play-circle" aria-hidden="true"></i></button>
+                </div>
+              </div>
+          </div>
+    </div> 
+    
+</div>

@@ -1,0 +1,99 @@
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6 my-5">
+        <div class="card ">
+            <h1 class="text-center mt-4">Register</h1>
+            <form  #RegisterForm="ngForm" (ngSubmit)="onRegister()" class="card-body">
+
+                <div class="form-group">
+                    <label>Name <span class="text-danger">*</span></label>
+                    <input type="text" 
+                    class="form-control"
+                    [ngClass]="name.errors && name.touched? 'is-invalid' : ''"
+                    name="name"
+                    #name="ngModel"
+                    [(ngModel)]="register.name"
+                    required
+                    minlength="3"
+                    autocomplete="off"
+                    >
+
+                    <div [hidden]="!name.errors?.['required']" class="invalid-feedback">Name is required!</div>
+
+                    <div [hidden]="!name.errors?.['minlength']" class="invalid-feedback">Atleast 3 characters required!</div>
+                </div>
+
+                <div class="form-group">
+                    <label>Email <span class="text-danger">*</span></label>
+                    <input type="text" 
+                    class="form-control"
+                    [ngClass]="email.errors && email.touched? 'is-invalid' : ''"
+                    name="email"
+                    #email="ngModel"
+                    [(ngModel)]="register.email"
+                    required
+                    pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"                  
+                    >
+
+                    <div [hidden]="!email.errors?.['required']" class="invalid-feedback">Email is required!</div>
+
+                <div [hidden]="!email.errors?.['pattern']" class="invalid-feedback">Invalid email!</div>
+                </div>
+
+                <div class="form-group">
+                    <label>Password <span class="text-danger">*</span> </label>
+                    <input type="{{ showPassword ? 'text' : 'password' }}" 
+                    class="form-control"
+                    [ngClass]="password.errors && password.touched? 'is-invalid' : ''"
+                    name="password"
+                    #password="ngModel"
+                    [(ngModel)]="register.password"
+                    required
+                    minlength="4"
+                    >
+                    <div [hidden]="!password.errors?.['required']" class="invalid-feedback">Password is required!</div>
+                    <div [hidden]="!password.errors?.['minlength']" class="invalid-feedback">Weak Password!</div>
+                    <input type="checkbox" class="mx-1" (click)="togglePassword()">Show Password
+                </div>
+
+        
+
+                
+
+
+                <div class="form-group card p-1 ">
+                    <label>&nbsp;&nbsp;&nbsp;Gender <span class="text-danger">*</span></label>
+                    <p>
+                        &nbsp;&nbsp;
+                        <label>
+                            <input type="radio" #Male="ngModel" name="gender"
+                            value="Male" [(ngModel)]="register.gender" required>Male &nbsp;&nbsp;  
+                          </label>
+                          <label>
+                            <input #Female="ngModel" type="radio" name="gender" value="Female" [(ngModel)]="register.gender"
+                            
+                            required>Female
+                        
+                        </label>
+                    </p>
+                    
+                    <div *ngIf="Male.errors?.['required'] && Male.touched" class="text-danger gender-text ml-3" >Select gender!</div>  
+                </div>
+                
+                <div class="form-group card p-3">
+                      <span>
+                        <label>Register as <span class="text-danger">*</span></label>
+                        <select class="form-control" name="isAuthor" [(ngModel)]="register.IsAuthor">
+                            <option [ngValue]="false">User</option>
+                            <option [ngValue]="true" >Author</option>
+                          </select>
+                      </span>
+                </div>
+
+                <button class="btn btn-block btn-outline-dark mt-4" [disabled]="RegisterForm.invalid">Register</button>
+
+            </form>
+        </div>
+    </div>
+    <div class="col-md-3"></div>
+</div>
